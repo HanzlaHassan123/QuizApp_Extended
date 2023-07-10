@@ -1,6 +1,7 @@
 package com.example.gamingapp.ui.home;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import com.example.gamingapp.databinding.FragmentHomeBinding;
 
 import org.w3c.dom.Text;
 
+import java.util.Random;
+
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
@@ -24,6 +27,14 @@ public class HomeFragment extends Fragment {
     TextView message_text,letter_text;
     Button root_btn,grass_btn,sky_btn,play_pause;
     int play_or_pause;
+
+    // RESOURCES.......
+    char[] skyLetters = {'b', 'd', 'f', 'h', 'k', 'l', 't'};
+    char[] grassLetters = {'g', 'j', 'p', 'q', 'y'};
+    char[] rootLetters = {'a', 'c', 'e', 'i', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z'};
+    String answerString = "";
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,45 +59,139 @@ public class HomeFragment extends Fragment {
         grass_btn=view.findViewById(R.id.grass_btn);
         sky_btn=view.findViewById(R.id.sky_btn);
         message_text=view.findViewById(R.id.message_text);
+        letter_text=view.findViewById(R.id.letter_text);
+
+
+
+
 
         play_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View insideView) {
-                if(play_or_pause==1){
-                    play_or_pause=0;
-                    message_text.setText("game is finished now !");
-                    play_pause.setText("Play");
+                try {
+                    if (play_or_pause == 1) {
+                        play_or_pause = 0;
+                        message_text.setText("game is finished now !");
+                        play_pause.setText("Play");
 
-                }else{
-                    play_or_pause=1;
-                    message_text.setText("Guess the letters and earn points ! Happy Gaming");
-                    play_pause.setText("Finish");
+                    } else {
+                        message_text.setText("Happy Gaming !!");
+
+                        // Wait for 5 seconds and create a new question
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                letter_text.setText(getRandomLetter());
+                                message_text.setText("");
+                                play_or_pause = 1;
+                                play_pause.setText("Finish");
+                            }
+                        }, 2000); // 5000 milliseconds = 5 seconds
+
+
+                    }
+                }catch (Exception ex){
+                    message_text.setText(ex.getMessage());
                 }
             }
         });
         root_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View inside_view) {
-                message_text=view.findViewById(R.id.message_text);
+                if (play_or_pause == 1) {
 
-                message_text.setText("Root am clicked now");
+                    if (answerString == "Root Letter") {
+                        message_text.setText("Awesome your answer is right");
+                    } else {
+                        message_text.setText("Incorrect! the answer is " + answerString);
+                    }
+                    // Wait for 5 seconds and create a new question
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            letter_text.setText(getRandomLetter());
+                            message_text.setText("");
+                        }
+                    }, 2000); // 5000 milliseconds = 5 seconds
+
+                }else{
+                    message_text.setText("First start the game");
+                }
             }
         });
 
         sky_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                message_text.setText("Sky is clicked now");
+                if (play_or_pause == 1) {
+
+                    if (answerString == "Sky Letter") {
+                        message_text.setText("Awesome your answer is right");
+                    } else {
+                        message_text.setText("Incorrect! the answer is " + answerString);
+                    }
+                    // Wait for 5 seconds and create a new question
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            letter_text.setText(getRandomLetter());
+                            message_text.setText("");
+                        }
+                    }, 2000); // 5000 milliseconds = 5 seconds
+
+                }else{
+                    message_text.setText("First start the game");
+                }
             }
         });
 
         grass_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                message_text.setText("Grass is clicked now");
+                if (play_or_pause == 1) {
+
+                    if (answerString == "Grass Letter") {
+                        message_text.setText("Awesome your answer is right");
+                    } else {
+                        message_text.setText("Incorrect! the answer is " + answerString);
+                    }
+                    // Wait for 5 seconds and create a new question
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            letter_text.setText(getRandomLetter());
+                            message_text.setText("");
+                        }
+                    }, 2000); // 5000 milliseconds = 5 seconds
+
+                }else{
+                    message_text.setText("First start the game");
+                }
             }
         });
 
+    }
+
+    // RANDOM ANSWER STRING GENERATOR.......
+    String getRandomLetter() {
+        Random random = new Random();
+        int category = random.nextInt(3);
+        char letter;
+        switch (category) {
+            case 0:
+                letter = skyLetters[random.nextInt(skyLetters.length)];
+                answerString = "Sky Letter";
+                break;
+            case 1:
+                letter = grassLetters[random.nextInt(grassLetters.length)];
+                answerString = "Grass Letter";
+                break;
+            default:
+                letter = rootLetters[random.nextInt(rootLetters.length)];
+                answerString = "Root Letter";
+                break;
+        }
+        return String.valueOf(letter);
     }
     @Override
     public void onDestroyView() {
