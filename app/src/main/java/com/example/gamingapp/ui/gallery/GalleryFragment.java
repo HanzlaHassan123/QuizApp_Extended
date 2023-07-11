@@ -1,17 +1,25 @@
 package com.example.gamingapp.ui.gallery;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gamingapp.DBHelper;
 import com.example.gamingapp.HistorStringModel;
+import com.example.gamingapp.MyAdapter;
 import com.example.gamingapp.R;
 import com.example.gamingapp.databinding.FragmentGalleryBinding;
 
@@ -27,27 +35,45 @@ public class GalleryFragment extends Fragment {
     //HistorStringModel historStringModel;
     TextView right_answers;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-      /*  GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
+        // 1. get a reference to recyclerView
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycleView);
 
-        final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        */
-        return inflater.inflate(R.layout.fragment_gallery,container,false);
+        // 2. set layoutManger
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        dbHelper=new DBHelper(rootView.getContext());
+        ArrayList<HistorStringModel> historStringModels=dbHelper.GetHistory();
+
+        // 3. create an adapter
+        MyAdapter mAdapter = new MyAdapter(historStringModels);
+        // 4. set adapter
+        recyclerView.setAdapter(mAdapter);
+        // 5. set item animator to DefaultAnimator
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        return rootView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view,@NonNull Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
 
-        dbHelper=new DBHelper(view.getContext());
-        ArrayList<HistorStringModel> historStringModels=dbHelper.GetHistory();
+       /*
+        RecyclerView recyclerView=view.findViewById(R.id.recycleView);
 
+        Log.i(TAG, historStringModels.get(0).getYours());
+
+        MyAdapter myAdapter=new MyAdapter(view.getContext(),historStringModels);
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+        */
 
     }
     @Override
