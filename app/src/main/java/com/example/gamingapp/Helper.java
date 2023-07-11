@@ -9,8 +9,8 @@ public class Helper {
         String yours="";
 
         for (int i=0;i<historyModels.size();i++){
-            rights=rights+","+historyModels.get(i).getRightAnswer();
-            yours=yours+","+historyModels.get(i).getYourAnswer();
+            rights=rights+"-"+historyModels.get(i).getRightAnswer();
+            yours=yours+"-"+historyModels.get(i).getYourAnswer();
         }
 
         String[]ans={rights,yours};

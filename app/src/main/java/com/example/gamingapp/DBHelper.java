@@ -31,14 +31,14 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(createTable);
     }
 
-    public void AddHistory(String right_answers,String your_answers){
+    public void AddHistory(String right_answers,String your_answers,int cn){
         SQLiteDatabase db=this.getWritableDatabase();
 
         ContentValues values=new ContentValues();
 
         values.put(YOURS,your_answers);
         values.put(RIGHT,right_answers);
-        values.put(COUNT,2);
+        values.put(COUNT,cn);
 
         db.insert(TABLE_NAME,null,values);
 

@@ -23,24 +23,6 @@
             android:padding="15dp">
 
 
-            <TextView
-                android:id="@+id/id_holder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ID: 1"
-                android:textSize="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/time_stamp_holder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time Stamp"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
@@ -113,7 +95,9 @@
                 android:layout_height="wrap_content"
                 android:text="Total Right: 10"
                 android:textSize="15dp"
-                app:layout_constraintEnd_toStartOf="@+id/time_stamp_holder"
+                android:textColor="@color/white"
+                android:fontFamily="@font/amiko"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/id_holder"
                 app:layout_constraintTop_toTopOf="parent" />
 

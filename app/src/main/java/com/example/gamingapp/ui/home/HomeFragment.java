@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
     TextView message_text,letter_text;
     Button root_btn,grass_btn,sky_btn,play_pause;
     int play_or_pause;
+    int cn=0;
     DBHelper dbHelper;
 
     // RESOURCES.......
@@ -69,6 +70,7 @@ public class HomeFragment extends Fragment {
         letter_text=view.findViewById(R.id.letter_text);
 
         dbHelper=new DBHelper(view.getContext());
+        cn=0;
 
 
 
@@ -82,10 +84,8 @@ public class HomeFragment extends Fragment {
                         Helper helper=new Helper();
                         String []ans=helper.converter(historyModels);
 
-                        message_text.setText(ans[1]);
-
                         // now use this db helper to isert data into the database...
-                        dbHelper.AddHistory(ans[0],ans[1]);
+                        dbHelper.AddHistory(ans[0],ans[1],cn);
                         play_pause.setText("Play");
 
                     } else {
@@ -116,6 +116,7 @@ public class HomeFragment extends Fragment {
 
                     if (answerString == "Root Letter") {
                         message_text.setText("Awesome your answer is right");
+                        cn++;
                     } else {
                         message_text.setText("Incorrect! the answer is " + answerString);
                     }
@@ -143,6 +144,7 @@ public class HomeFragment extends Fragment {
 
                     if (answerString == "Sky Letter") {
                         message_text.setText("Awesome your answer is right");
+                        cn++;
                     } else {
                         message_text.setText("Incorrect! the answer is " + answerString);
                     }
@@ -170,6 +172,7 @@ public class HomeFragment extends Fragment {
 
                     if (answerString == "Grass Letter") {
                         message_text.setText("Awesome your answer is right");
+                        cn++;
                     } else {
                         message_text.setText("Incorrect! the answer is " + answerString);
                     }
