@@ -1,27 +1,29 @@
 package com.example.gamingapp;
 
 public class HistoryModel {
-    private String wrongAnswer;
-    private  String rightAnswer;
+   private String yourAnswer;
+   private String rightAnswer;
 
-    public HistoryModel(String wrongAnswer, String rightAnswer) {
-        this.wrongAnswer = wrongAnswer;
-        this.rightAnswer = rightAnswer;
-    }
 
-    public void setWrongAnswer(String wrongAnswer) {
-        this.wrongAnswer = wrongAnswer;
-    }
+   public HistoryModel(String yourAnswer, String rightAnswer) {
+      this.yourAnswer = yourAnswer;
+      this.rightAnswer = rightAnswer;
+   }
 
-    public void setRightAnswer(String rightAnswer) {
-        this.rightAnswer = rightAnswer;
-    }
+   public String getYourAnswer() {
+      return yourAnswer;
+   }
 
-    public String getWrongAnswer() {
-        return wrongAnswer;
-    }
+   public String getRightAnswer() {
+      return rightAnswer;
+   }
 
-    public String getRightAnswer() {
-        return rightAnswer;
-    }
+   public void setYourAnswer(String yourAnswer) {
+      this.yourAnswer = yourAnswer;
+   }
+
+   public void setRightAnswer(String rightAnswer) {
+      this.rightAnswer = rightAnswer;
+   }
+
 }

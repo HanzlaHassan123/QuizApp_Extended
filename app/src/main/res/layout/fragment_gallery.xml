@@ -8,12 +8,12 @@
     tools:context=".ui.gallery.GalleryFragment">
 
     <TextView
-        android:id="@+id/text_gallery"
+        android:id="@+id/right_answers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="History Page"
+        android:text="TextView"
         android:textColor="@color/white"
-        android:textSize="40dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

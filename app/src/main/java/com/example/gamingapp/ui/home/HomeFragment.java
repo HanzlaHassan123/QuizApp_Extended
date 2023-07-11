@@ -13,11 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.gamingapp.DBHelper;
+import com.example.gamingapp.Helper;
+import com.example.gamingapp.HistoryModel;
 import com.example.gamingapp.R;
 import com.example.gamingapp.databinding.FragmentHomeBinding;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class HomeFragment extends Fragment {
@@ -27,12 +31,15 @@ public class HomeFragment extends Fragment {
     TextView message_text,letter_text;
     Button root_btn,grass_btn,sky_btn,play_pause;
     int play_or_pause;
+    DBHelper dbHelper;
 
     // RESOURCES.......
     char[] skyLetters = {'b', 'd', 'f', 'h', 'k', 'l', 't'};
     char[] grassLetters = {'g', 'j', 'p', 'q', 'y'};
     char[] rootLetters = {'a', 'c', 'e', 'i', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z'};
     String answerString = "";
+
+    ArrayList<HistoryModel>historyModels=new ArrayList<>();
 
 
 
@@ -61,7 +68,7 @@ public class HomeFragment extends Fragment {
         message_text=view.findViewById(R.id.message_text);
         letter_text=view.findViewById(R.id.letter_text);
 
-
+        dbHelper=new DBHelper(view.getContext());
 
 
 
@@ -72,6 +79,13 @@ public class HomeFragment extends Fragment {
                     if (play_or_pause == 1) {
                         play_or_pause = 0;
                         message_text.setText("game is finished now !");
+                        Helper helper=new Helper();
+                        String []ans=helper.converter(historyModels);
+
+                        message_text.setText(ans[1]);
+
+                        // now use this db helper to isert data into the database...
+                        dbHelper.AddHistory(ans[0],ans[1]);
                         play_pause.setText("Play");
 
                     } else {
@@ -105,6 +119,8 @@ public class HomeFragment extends Fragment {
                     } else {
                         message_text.setText("Incorrect! the answer is " + answerString);
                     }
+
+                    historyModels.add(new HistoryModel("Root Letter",answerString));
                     // Wait for 5 seconds and create a new question
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -130,6 +146,8 @@ public class HomeFragment extends Fragment {
                     } else {
                         message_text.setText("Incorrect! the answer is " + answerString);
                     }
+
+                    historyModels.add(new HistoryModel("Sky Letter",answerString));
                     // Wait for 5 seconds and create a new question
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -155,6 +173,8 @@ public class HomeFragment extends Fragment {
                     } else {
                         message_text.setText("Incorrect! the answer is " + answerString);
                     }
+
+                    historyModels.add(new HistoryModel("Grass Letter",answerString));
                     // Wait for 5 seconds and create a new question
                     new Handler().postDelayed(new Runnable() {
                         @Override
