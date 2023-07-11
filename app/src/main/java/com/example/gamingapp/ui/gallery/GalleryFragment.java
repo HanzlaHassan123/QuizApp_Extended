@@ -44,12 +44,10 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view,@NonNull Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
-        right_answers=view.findViewById(R.id.right_answers);
 
         dbHelper=new DBHelper(view.getContext());
         ArrayList<HistorStringModel> historStringModels=dbHelper.GetHistory();
 
-        right_answers.setText(historStringModels.get(0).getRigths());
 
     }
     @Override
