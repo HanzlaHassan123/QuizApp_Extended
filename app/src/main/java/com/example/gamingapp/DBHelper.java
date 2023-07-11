@@ -38,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         values.put(YOURS,your_answers);
         values.put(RIGHT,right_answers);
-        values.put(COUNT,3);
+        values.put(COUNT,2);
 
         db.insert(TABLE_NAME,null,values);
 

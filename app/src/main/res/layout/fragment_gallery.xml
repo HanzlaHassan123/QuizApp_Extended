@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_700"
+    android:background="#3F51B5"
+
     tools:context=".ui.gallery.GalleryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/items_list"/>
+        tools:listitem="@layout/items_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
