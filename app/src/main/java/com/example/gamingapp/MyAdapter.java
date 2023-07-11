@@ -37,9 +37,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
 
-        // - get data from your itemsData at this position
-        // - replace the contents of the view with that itemsData
-
        viewHolder.count_holder.setText("Count of correct answers = "+this.historStringModels.get(position).getCount());
        viewHolder.correct_answer.setText(this.historStringModels.get(position).getRigths());
        viewHolder.your_answers.setText(this.historStringModels.get(position).getYours());
