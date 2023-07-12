@@ -18,7 +18,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context){
         super(context,TABLE_NAME,null,1);
-
     }
 
     @Override
@@ -38,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         values.put(YOURS,your_answers);
         values.put(RIGHT,right_answers);
-        values.put(COUNT,cn);
+        values.put(COUNT,2);
 
         db.insert(TABLE_NAME,null,values);
 

@@ -46,7 +46,6 @@ public class GalleryFragment extends Fragment {
         // 2. set layoutManger
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
         dbHelper=new DBHelper(rootView.getContext());
         ArrayList<HistorStringModel> historStringModels=dbHelper.GetHistory();
 

@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="3dp"
+        app:cardCornerRadius="25dp"
         app:cardElevation="3dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#E91E63"
+            android:background="#D88100"
             android:padding="15dp">
 
 
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:text="Your Answers:"
+                    android:text="Your Response:"
                     android:textColor="@color/white"
                     android:fontFamily="@font/amiko"
                     android:textSize="23dp"
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:text="Correct Answers:"
+                    android:text="Correct Response:"
                     android:fontFamily="@font/amiko"
                     android:textColor="@color/white"
                     android:textSize="23dp"
@@ -93,7 +93,7 @@
                 android:id="@+id/count_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Total Right: 10"
+                android:text="Total Correct: 10"
                 android:textSize="15dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/amiko"
